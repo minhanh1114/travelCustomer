@@ -1,88 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Login from './Pages/Login.js';
+import Load from './Load.js';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
-
-import Navigation from './Components/Navigation';
-import Home from './Pages/Home.js';
-import Guide from './Pages/Guide';
-import Search from './Pages/Search';
-import Trip from './Pages/Trip';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-import {SafeAreaInsetsContext} from 'react-native-safe-area-context';
-import {NavigationContainer} from '@react-navigation/native';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <>
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({route}) => ({
-            tabBarIcon: ({focused, color, size}) => {
-              let iconName;
-
-              if (route.name === 'Home') {
-                iconName = 'home';
-              } else if (route.name === 'Guide') {
-                iconName = 'calendar';
-              } else if (route.name === 'Search') {
-                iconName = 'search';
-              } else if (route.name === 'Trip') {
-                iconName = 'map';
-              }
-
-              return <Icon name={iconName} size={30} color="black" style={styles.iconNav} />;
-            },
-            tabBarActiveTintColor: 'black',
-            tabBarInactiveTintColor: 'gray',
-            tabBarActiveBackgroundColor: '#FF4760',
-            tabBarItemStyle: {
-              width: 70,
-              alignItems: 'center',
-              alignContent: 'center',
-              borderRadius: 50,
-            },
-            tabBarShowLabel: false,
-            headerShown: false,
-            tabBarStyle: {
-              position: 'absolute',
-              bottom: '2%',
-              left: '5%',
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              // padding: 4,
-              paddingBottom :Platform.OS === 'ios' ? 0 : 0,
-              backgroundColor: 'white',
-              height: '8%',
-              width: '90%',
-              borderRadius: 100,
-              shadowColor: '#000000',
-              shadowOffset: {
-                width: 3,
-                height: 3,
-              },
-              shadowRadius: 10,
-              shadowOpacity: 0.2,
-            },
-          })}>
-          <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Search" component={Search} />
-          <Tab.Screen name="Guide" component={Guide} />
-          <Tab.Screen name="Trip" component={Trip} />
-        </Tab.Navigator>
-      </NavigationContainer>
-      {/* <Home /> */}
-      {/* <Trip />
-      <Guide />
-      <Search /> */}
-      {/* <Navigation /> */}
-    </>
+    <Login/>
   );
 }
 
